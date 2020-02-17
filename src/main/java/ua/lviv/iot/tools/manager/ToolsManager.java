@@ -8,11 +8,11 @@ import ua.lviv.iot.tools.model.AbstractTool;
 public class ToolsManager {
 	private List<AbstractTool> gardenerToolsList = new LinkedList<>();
 
-	ToolsManager(List<AbstractTool> gardenerToolsList) {
+	public ToolsManager(List<AbstractTool> gardenerToolsList) {
 		this.gardenerToolsList = gardenerToolsList;
 	}
 
-	ToolsManager() {
+	public ToolsManager() {
 	}
 
 	public void addTool(AbstractTool addedObject) {
