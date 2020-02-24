@@ -1,6 +1,7 @@
 package ua.lviv.iot.tools.manager;
 
 import java.util.LinkedList;
+
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,9 +17,9 @@ public class BaseToolsManagerTest {
 	@BeforeEach
 	public void createTools() {
 		toolsList = new LinkedList<AbstractTool>();
-		toolsList.add(new Saw(30, 2, "Blue", true, 10));
-		toolsList.add(new Axe(20, 3, "Brown", true, "Wood"));
-		toolsList.add(new Scissors(34, 1.5, "Green", true, "For leaves"));
+		toolsList.add(new Saw(30, 2, "Blue", true, 10, "best saw"));
+		toolsList.add(new Axe(20, 3, "Brown", true, "Wood", "best axe"));
+		toolsList.add(new Scissors(34, 1.5, "Green", true, "For leaves", "best scissors"));
 
 	}
 }
