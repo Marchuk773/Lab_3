@@ -28,8 +28,8 @@ public class ToolsManagerUtils {
 	}
 
 	public static void sortByPrice(List<AbstractTool> tools, SortType sortType) {
-		tools.sort(
-				sortType == SortType.ASCENDING ? PRICE_IN_DOLLARS_COMPARATOR : PRICE_IN_DOLLARS_COMPARATOR.reversed());
+		tools.sort(sortType == SortType.ASCENDING ? PRICE_IN_DOLLARS_COMPARATOR
+				: PRICE_IN_DOLLARS_COMPARATOR.reversed());
 	}
 
 	public static void sortByName(List<AbstractTool> tools, SortType sortType) {
@@ -63,11 +63,13 @@ public class ToolsManagerUtils {
 		switch (sortType) {
 		case ASCENDING:
 			tools.sort((AbstractTool firstTool,
-					AbstractTool secondTool) -> (int) (firstTool.getWeightInKilos() - secondTool.getWeightInKilos()));
+					AbstractTool secondTool) -> (int) (firstTool.getWeightInKilos()
+							- secondTool.getWeightInKilos()));
 			break;
 		case DESCENDING:
 			tools.sort((AbstractTool firstTool,
-					AbstractTool secondTool) -> (int) (secondTool.getWeightInKilos() - firstTool.getWeightInKilos()));
+					AbstractTool secondTool) -> (int) (secondTool.getWeightInKilos()
+							- firstTool.getWeightInKilos()));
 			break;
 		default:
 			break;

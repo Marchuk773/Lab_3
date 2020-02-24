@@ -35,7 +35,8 @@ public class ToolsManager {
 	public List<AbstractTool> findByPrice(double lowerPrice, double higherPrice) {
 		List<AbstractTool> foundTools = new LinkedList<>();
 		for (AbstractTool gardenerTool : gardenerToolsList) {
-			if ((gardenerTool.getPriceInDollars() >= lowerPrice) && (gardenerTool.getPriceInDollars() <= higherPrice)) {
+			if ((gardenerTool.getPriceInDollars() >= lowerPrice)
+					&& (gardenerTool.getPriceInDollars() <= higherPrice)) {
 				foundTools.add(gardenerTool);
 			}
 		}

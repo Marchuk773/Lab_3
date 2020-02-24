@@ -7,7 +7,8 @@ public abstract class AbstractTool {
 	protected String name;
 	protected boolean stainless;
 
-	public AbstractTool(double priceInDollars, double weightInKilos, String color, boolean stainless, String name) {
+	public AbstractTool(double priceInDollars, double weightInKilos, String color,
+			boolean stainless, String name) {
 		this.priceInDollars = priceInDollars;
 		this.weightInKilos = weightInKilos;
 		this.color = color;
