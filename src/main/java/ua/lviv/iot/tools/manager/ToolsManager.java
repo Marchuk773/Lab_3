@@ -2,7 +2,6 @@ package ua.lviv.iot.tools.manager;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import ua.lviv.iot.tools.model.AbstractTool;
 
 public class ToolsManager {
@@ -36,7 +35,8 @@ public class ToolsManager {
 	public List<AbstractTool> findByPrice(double lowerPrice, double higherPrice) {
 		List<AbstractTool> foundTools = new LinkedList<>();
 		for (AbstractTool gardenerTool : gardenerToolsList) {
-			if ((gardenerTool.getPriceInDollars() >= lowerPrice) && (gardenerTool.getPriceInDollars() <= higherPrice)) {
+			if ((gardenerTool.getPriceInDollars() >= lowerPrice)
+					&& (gardenerTool.getPriceInDollars() <= higherPrice)) {
 				foundTools.add(gardenerTool);
 			}
 		}

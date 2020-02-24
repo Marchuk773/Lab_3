@@ -1,12 +1,9 @@
 package ua.lviv.iot.tools.manager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import ua.lviv.iot.tools.model.AbstractTool;
 
 public class ToolsManagerTest extends BaseToolsManagerTest {
