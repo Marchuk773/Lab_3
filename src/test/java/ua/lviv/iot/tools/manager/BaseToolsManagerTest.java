@@ -9,14 +9,14 @@ import ua.lviv.iot.tools.model.Saw;
 import ua.lviv.iot.tools.model.Scissors;
 
 public class BaseToolsManagerTest {
-	protected List<AbstractTool> toolsList;
+    protected List<AbstractTool> toolsList;
 
-	@BeforeEach
-	public void createTools() {
-		toolsList = new LinkedList<AbstractTool>();
-		toolsList.add(new Saw(30, 2, "Blue", true, 10, "best saw"));
-		toolsList.add(new Axe(20, 3, "Brown", true, "Wood", "best axe"));
-		toolsList.add(new Scissors(34, 1.5, "Green", true, "For leaves", "best scissors"));
+    @BeforeEach
+    public void createTools() {
+        toolsList = new LinkedList<AbstractTool>();
+        toolsList.add(new Saw(30, 2, "Blue", true, 10, "best saw"));
+        toolsList.add(new Axe(20, 3, "Brown", true, "Wood", "best axe"));
+        toolsList.add(new Scissors(34, 1.5, "Green", true, "For leaves", "best scissors"));
 
-	}
+    }
 }
