@@ -13,7 +13,7 @@ public class ToolsWriterTest extends BaseToolsManagerTest {
 
     @Test
     public void testFile() throws IOException {
-        try (Writer fileWriter = new FileWriter("Path.txt")) {
+        try (Writer fileWriter = new FileWriter("Tools.csv")) {
             ToolsWriter writer = new ToolsWriter();
             writer.setTextWriter(fileWriter);
             writer.writeToFile(toolsList);
