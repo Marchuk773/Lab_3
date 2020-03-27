@@ -1,5 +1,7 @@
 package ua.lviv.iot.tools.model;
 
+import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
+
 public class Axe extends AbstractTool {
     private String handleMaterial;
 
@@ -19,6 +21,31 @@ public class Axe extends AbstractTool {
 
     public String toCSV() {
         return super.toCSV() + " handleMaterial = " + getHandleMaterial();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((handleMaterial == null) ? 0 : handleMaterial.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Axe other = (Axe) obj;
+        if (handleMaterial == null) {
+            if (other.handleMaterial != null)
+                return false;
+        } else if (!handleMaterial.equals(other.handleMaterial))
+            return false;
+        return true;
     }
 
     public String toString() {

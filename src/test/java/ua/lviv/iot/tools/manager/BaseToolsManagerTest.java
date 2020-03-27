@@ -3,7 +3,7 @@ package ua.lviv.iot.tools.manager;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import ua.lviv.iot.tools.model.AbstractTool;
+import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
 import ua.lviv.iot.tools.model.Axe;
 import ua.lviv.iot.tools.model.Saw;
 import ua.lviv.iot.tools.model.Scissors;
