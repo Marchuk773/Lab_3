@@ -2,7 +2,7 @@ package ua.lviv.iot.tools.manager;
 
 import java.util.LinkedList;
 import java.util.List;
-import ua.lviv.iot.tools.model.AbstractTool;
+import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
 
 public class ToolsManager {
     private List<AbstractTool> gardenerToolsList = new LinkedList<>();

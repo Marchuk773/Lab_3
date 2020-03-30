@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
-import ua.lviv.iot.tools.model.AbstractTool;
+import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
 
 public class ToolsWriter {
     private Writer textWriter;

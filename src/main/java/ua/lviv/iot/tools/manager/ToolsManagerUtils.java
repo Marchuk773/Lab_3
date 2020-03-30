@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
 import ua.lviv.iot.tools.manager.SortType;
-import ua.lviv.iot.tools.model.AbstractTool;
+import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
 
 public class ToolsManagerUtils {
 
@@ -70,9 +70,8 @@ public class ToolsManagerUtils {
                             - secondTool.getWeightInKilos()));
             break;
         case DESCENDING:
-            tools.sort((AbstractTool firstTool,
-                    AbstractTool secondTool) -> (int) (secondTool.getWeightInKilos()
-                            - firstTool.getWeightInKilos()));
+            tools.sort((AbstractTool firstTool, AbstractTool secondTool) -> Double
+                    .compare(secondTool.getWeightInKilos(), firstTool.getWeightInKilos()));
             break;
         default:
             break;

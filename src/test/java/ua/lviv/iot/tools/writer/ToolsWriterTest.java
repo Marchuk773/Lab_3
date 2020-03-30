@@ -7,7 +7,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import org.junit.jupiter.api.Test;
 import ua.lviv.iot.tools.manager.BaseToolsManagerTest;
-import ua.lviv.iot.tools.model.AbstractTool;
+import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
 
 public class ToolsWriterTest extends BaseToolsManagerTest {
 

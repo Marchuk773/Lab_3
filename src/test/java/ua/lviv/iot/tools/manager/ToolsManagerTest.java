@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.lviv.iot.tools.model.AbstractTool;
+import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
 
 public class ToolsManagerTest extends BaseToolsManagerTest {
     private ToolsManager toolsManager;
