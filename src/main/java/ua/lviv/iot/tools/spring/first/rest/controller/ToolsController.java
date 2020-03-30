@@ -44,8 +44,10 @@ public class ToolsController {
     public ResponseEntity<AbstractTool> updateTool(final @PathVariable("id") Integer toolId,
             final @RequestBody AbstractTool tool) {
         tool.setId(toolId);
-        HttpStatus status = tools.put(toolId, tool) == null ? HttpStatus.NOT_FOUND : HttpStatus.OK;
-        return ResponseEntity.status(status).build();
+        if (tools.containsKey(toolId)) {
+            return ResponseEntity.ok(tools.put(toolId, tool));
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping(path = "/{id}")
