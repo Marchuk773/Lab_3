@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
-import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
+import ua.lviv.iot.tools.spring.first.rest.model.Tool;
 
 public class ToolsWriter {
     private Writer textWriter;
@@ -14,9 +14,9 @@ public class ToolsWriter {
         this.textWriter = textWriter;
     }
 
-    public void writeToFile(List<AbstractTool> tools) throws IOException {
+    public void writeToFile(List<Tool> tools) throws IOException {
         String textToWrite;
-        for (AbstractTool tool : tools) {
+        for (Tool tool : tools) {
             textToWrite = tool.getHeaders() + ", " + tool.toCSV() + "\r\n";
             textWriter.write(textToWrite);
         }

@@ -1,15 +1,23 @@
 package ua.lviv.iot.tools.spring.first.rest.model;
 
-public class AbstractTool {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Tool {
     protected double priceInDollars;
     protected double weightInKilos;
     protected String color;
     protected String name;
     protected boolean stainless;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected Integer id;
 
-    public AbstractTool(double priceInDollars, double weightInKilos, String color,
-            boolean stainless, String name) {
+    public Tool(double priceInDollars, double weightInKilos, String color, boolean stainless,
+            String name) {
         this.priceInDollars = priceInDollars;
         this.weightInKilos = weightInKilos;
         this.color = color;
@@ -17,11 +25,11 @@ public class AbstractTool {
         this.name = name;
     }
 
-    public AbstractTool(double priceInDollars, double weightInKilos) {
+    public Tool(double priceInDollars, double weightInKilos) {
         this(priceInDollars, weightInKilos, null, true, null);
     }
 
-    public AbstractTool() {
+    public Tool() {
         this(0, 0, null, true, null);
     }
 
@@ -86,7 +94,7 @@ public class AbstractTool {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        AbstractTool other = (AbstractTool) obj;
+        Tool other = (Tool) obj;
         if (color == null) {
             if (other.color != null)
                 return false;

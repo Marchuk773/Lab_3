@@ -1,8 +1,8 @@
-package ua.lviv.iot.tools.model;
+package ua.lviv.iot.tools.spring.first.rest.model;
 
-import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
+import ua.lviv.iot.tools.spring.first.rest.model.Tool;
 
-public class Saw extends AbstractTool {
+public class Saw extends Tool {
     private double lengthInCentimetres;
 
     public Saw(double priceInDollars, double weightInKilos, String color, boolean stainless,

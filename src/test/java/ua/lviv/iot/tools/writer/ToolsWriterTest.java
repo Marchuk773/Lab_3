@@ -7,7 +7,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import org.junit.jupiter.api.Test;
 import ua.lviv.iot.tools.manager.BaseToolsManagerTest;
-import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
+import ua.lviv.iot.tools.spring.first.rest.model.Tool;
 
 public class ToolsWriterTest extends BaseToolsManagerTest {
 
@@ -27,7 +27,7 @@ public class ToolsWriterTest extends BaseToolsManagerTest {
             writer.setTextWriter(csvWriter);
             writer.writeToFile(toolsList);
             String expectedString = "";
-            for (AbstractTool tool : toolsList) {
+            for (Tool tool : toolsList) {
                 expectedString += tool.getHeaders() + ", " + tool.toCSV() + "\r\n";
             }
             assertEquals(expectedString, writer.toString());
