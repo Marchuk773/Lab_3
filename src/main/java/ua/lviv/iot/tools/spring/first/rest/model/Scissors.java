@@ -29,29 +29,4 @@ public class Scissors extends Tool {
                 + "; stainless = " + stainless + ")";
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + ((typeOfScissors == null) ? 0 : typeOfScissors.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Scissors other = (Scissors) obj;
-        if (typeOfScissors == null) {
-            if (other.typeOfScissors != null)
-                return false;
-        } else if (!typeOfScissors.equals(other.typeOfScissors))
-            return false;
-        return true;
-    }
-
 }

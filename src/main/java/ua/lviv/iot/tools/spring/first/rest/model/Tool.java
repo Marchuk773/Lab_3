@@ -1,9 +1,15 @@
 package ua.lviv.iot.tools.spring.first.rest.model;
 
+import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Tool {
@@ -15,14 +21,27 @@ public class Tool {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Integer id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "manufacturer_id")
+    @JsonIgnoreProperties("tools")
+    protected Manufacturer manufacturer;
+    @ManyToMany(mappedBy = "tools")
+    @JsonIgnoreProperties("tools")
+    private Set<Shop> shops;
 
     public Tool(double priceInDollars, double weightInKilos, String color, boolean stainless,
-            String name) {
+            String name, Manufacturer manufacturer) {
         this.priceInDollars = priceInDollars;
         this.weightInKilos = weightInKilos;
         this.color = color;
         this.stainless = stainless;
         this.name = name;
+        this.manufacturer = manufacturer;
+    }
+
+    public Tool(double priceInDollars, double weightInKilos, String color, boolean stainless,
+            String name) {
+        this(priceInDollars, weightInKilos, color, stainless, name, null);
     }
 
     public Tool(double priceInDollars, double weightInKilos) {
@@ -30,7 +49,6 @@ public class Tool {
     }
 
     public Tool() {
-        this(0, 0, null, true, null);
     }
 
     public Integer getId() {
@@ -61,6 +79,22 @@ public class Tool {
         return weightInKilos;
     }
 
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public Set<Shop> getShops() {
+        return shops;
+    }
+
+    public void setShops(Set<Shop> shops) {
+        this.shops = shops;
+    }
+
     public String getHeaders() {
         return "priceInDollars, weightInKilos, color, name, stainless";
     }
@@ -68,56 +102,6 @@ public class Tool {
     public String toCSV() {
         return "price = " + getPriceInDollars() + " weight = " + getWeightInKilos() + " color = "
                 + getColor() + " name = " + getName() + " stainless = " + isStainless();
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((color == null) ? 0 : color.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        long temp;
-        temp = Double.doubleToLongBits(priceInDollars);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + (stainless ? 1231 : 1237);
-        temp = Double.doubleToLongBits(weightInKilos);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Tool other = (Tool) obj;
-        if (color == null) {
-            if (other.color != null)
-                return false;
-        } else if (!color.equals(other.color))
-            return false;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        if (Double.doubleToLongBits(priceInDollars) != Double
-                .doubleToLongBits(other.priceInDollars))
-            return false;
-        if (stainless != other.stainless)
-            return false;
-        if (Double.doubleToLongBits(weightInKilos) != Double.doubleToLongBits(other.weightInKilos))
-            return false;
-        return true;
     }
 
 }
