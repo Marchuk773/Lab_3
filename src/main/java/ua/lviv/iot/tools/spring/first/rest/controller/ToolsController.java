@@ -43,15 +43,20 @@ public class ToolsController {
     @PutMapping(path = "/{id}")
     public ResponseEntity<Tool> updateTool(final @PathVariable("id") Integer toolId,
             final @RequestBody Tool tool) {
-        if (toolsService.checkIfToolExists(toolId)) {
-            return ResponseEntity.ok(toolsService.updateTool(toolId, tool));
+        Tool oldTool = getTool(toolId);
+        if (oldTool != null) {
+            Tool returnedTool = new Tool(oldTool.getPriceInDollars(), oldTool.getWeightInKilos(),
+                    oldTool.getColor(), oldTool.isStainless(), oldTool.getName());
+            returnedTool.setId(toolId);
+            toolsService.updateTool(toolId, tool);
+            return ResponseEntity.ok(returnedTool);
         }
         return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Tool> deleteTool(final @PathVariable("id") Integer toolId) {
-        if (toolsService.checkIfToolExists(toolId)) {
+    public ResponseEntity<Void> deleteTool(final @PathVariable("id") Integer toolId) {
+        if (getTool(toolId) != null) {
             toolsService.deleteTool(toolId);
             return ResponseEntity.ok().build();
         }

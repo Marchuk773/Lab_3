@@ -19,26 +19,17 @@ public class ToolsService {
         toolsRepository.deleteById(toolId);
     }
 
-    public boolean checkIfToolExists(Integer toolId) {
-        return toolsRepository.existsById(toolId);
-    }
-
     public Tool findTool(Integer toolId) {
-        return toolsRepository.findById(toolId).get();
+        return toolsRepository.findById(toolId).orElse(null);
     }
 
     public List<Tool> findAllTools() {
         return toolsRepository.findAll();
     }
 
-    public Tool updateTool(Integer toolId, Tool tool) {
-        Tool oldTool = toolsRepository.findById(toolId).get();
-        Tool returnedTool = new Tool(oldTool.getPriceInDollars(), oldTool.getWeightInKilos(),
-                oldTool.getColor(), oldTool.isStainless(), oldTool.getName());
-        returnedTool.setId(toolId);
+    public void updateTool(Integer toolId, Tool tool) {
         tool.setId(toolId);
         toolsRepository.save(tool);
-        return returnedTool;
     }
 
 }
