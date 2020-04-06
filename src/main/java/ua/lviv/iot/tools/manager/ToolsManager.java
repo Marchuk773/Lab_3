@@ -2,29 +2,29 @@ package ua.lviv.iot.tools.manager;
 
 import java.util.LinkedList;
 import java.util.List;
-import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
+import ua.lviv.iot.tools.spring.first.rest.model.Tool;
 
 public class ToolsManager {
-    private List<AbstractTool> gardenerToolsList = new LinkedList<>();
+    private List<Tool> gardenerToolsList = new LinkedList<>();
 
-    public ToolsManager(List<AbstractTool> gardenerToolsList) {
+    public ToolsManager(List<Tool> gardenerToolsList) {
         this.gardenerToolsList = gardenerToolsList;
     }
 
     public ToolsManager() {
     }
 
-    public void addTool(AbstractTool addedObject) {
+    public void addTool(Tool addedObject) {
         this.gardenerToolsList.add(addedObject);
     }
 
-    public void addTools(List<AbstractTool> addedObjects) {
+    public void addTools(List<Tool> addedObjects) {
         this.gardenerToolsList.addAll(addedObjects);
     }
 
-    public List<AbstractTool> findByPrice(double searchedPrice) {
-        List<AbstractTool> foundTools = new LinkedList<>();
-        for (AbstractTool gardenerTool : gardenerToolsList) {
+    public List<Tool> findByPrice(double searchedPrice) {
+        List<Tool> foundTools = new LinkedList<>();
+        for (Tool gardenerTool : gardenerToolsList) {
             if (gardenerTool.getPriceInDollars() == searchedPrice) {
                 foundTools.add(gardenerTool);
             }
@@ -32,9 +32,9 @@ public class ToolsManager {
         return foundTools;
     }
 
-    public List<AbstractTool> findByPrice(double lowerPrice, double higherPrice) {
-        List<AbstractTool> foundTools = new LinkedList<>();
-        for (AbstractTool gardenerTool : gardenerToolsList) {
+    public List<Tool> findByPrice(double lowerPrice, double higherPrice) {
+        List<Tool> foundTools = new LinkedList<>();
+        for (Tool gardenerTool : gardenerToolsList) {
             if ((gardenerTool.getPriceInDollars() >= lowerPrice)
                     && (gardenerTool.getPriceInDollars() <= higherPrice)) {
                 foundTools.add(gardenerTool);
@@ -43,8 +43,8 @@ public class ToolsManager {
         return foundTools;
     }
 
-    public void printItems(List<AbstractTool> items) {
-        for (AbstractTool itemsIterator : items) {
+    public void printItems(List<Tool> items) {
+        for (Tool itemsIterator : items) {
             System.out.println(itemsIterator);
         }
     }

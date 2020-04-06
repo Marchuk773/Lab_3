@@ -1,8 +1,8 @@
-package ua.lviv.iot.tools.model;
+package ua.lviv.iot.tools.spring.first.rest.model;
 
-import ua.lviv.iot.tools.spring.first.rest.model.AbstractTool;
+import ua.lviv.iot.tools.spring.first.rest.model.Tool;
 
-public class Axe extends AbstractTool {
+public class Axe extends Tool {
     private String handleMaterial;
 
     public Axe(double priceInDollars, double weightInKilos, String color, boolean stainless,
