@@ -36,8 +36,7 @@ public class ToolsController {
     @PostMapping
     public Tool createTool(final @RequestBody Tool tool) {
         tool.setId(idCounter.incrementAndGet());
-        toolsService.createTool(tool);
-        return tool;
+        return toolsService.createTool(tool);
     }
 
     @PutMapping(path = "/{id}")

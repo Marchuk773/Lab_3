@@ -17,7 +17,7 @@ public class Manufacturer {
     private String owner;
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private Integer id;
+    private Integer manufacturerId;
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("manufacturer")
     private Set<Tool> tools;
@@ -38,8 +38,8 @@ public class Manufacturer {
         return owner;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getManufacturerId() {
+        return manufacturerId;
     }
 
     public Set<Tool> getTools() {
@@ -54,8 +54,8 @@ public class Manufacturer {
         this.owner = owner;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setManufacturerId(Integer manufacturerId) {
+        this.manufacturerId = manufacturerId;
     }
 
     public void setTools(Set<Tool> tools) {

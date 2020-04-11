@@ -35,9 +35,8 @@ public class ShopController {
 
     @PostMapping
     public Shop createShop(final @RequestBody Shop shop) {
-        shop.setId(shopIdCounter.incrementAndGet());
-        shopService.createShop(shop);
-        return shop;
+        shop.setShopId(shopIdCounter.incrementAndGet());
+        return shopService.createShop(shop);
     }
 
     @PutMapping(path = "/{id}")
@@ -46,7 +45,7 @@ public class ShopController {
         Shop oldShop = getShop(shopId);
         if (oldShop != null) {
             Shop returnedShop = new Shop(oldShop.getName(), oldShop.getNumberInTown());
-            returnedShop.setId(shopId);
+            returnedShop.setShopId(shopId);
             shopService.updateShop(shopId, shop);
             return ResponseEntity.ok(returnedShop);
         }

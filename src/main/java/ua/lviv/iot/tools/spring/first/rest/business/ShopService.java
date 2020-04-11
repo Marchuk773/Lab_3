@@ -28,7 +28,7 @@ public class ShopService {
     }
 
     public void updateShop(Integer shopId, Shop shop) {
-        shop.setId(shopId);
+        shop.setShopId(shopId);
         shopRepository.save(shop);
     }
 

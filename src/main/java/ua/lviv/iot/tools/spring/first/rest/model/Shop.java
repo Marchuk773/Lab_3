@@ -16,12 +16,12 @@ public class Shop {
     private String name;
     private int numberInTown;
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private Integer id;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer shopId;
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "gardener_shops", joinColumns = {
             @JoinColumn(name = "shop_id", nullable = false) }, inverseJoinColumns = {
-                    @JoinColumn(name = "tool_id", nullable = false) })
+                    @JoinColumn(name = "tool_id", nullable = true) })
     @JsonIgnoreProperties("shops")
     private Set<Tool> tools;
 
@@ -41,8 +41,8 @@ public class Shop {
         return numberInTown;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getShopId() {
+        return shopId;
     }
 
     public Set<Tool> getTools() {
@@ -57,8 +57,8 @@ public class Shop {
         this.numberInTown = numberInTown;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
     }
 
     public void setTools(Set<Tool> tools) {

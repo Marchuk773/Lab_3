@@ -35,9 +35,8 @@ public class ManufacturerController {
 
     @PostMapping
     public Manufacturer createManufacturer(final @RequestBody Manufacturer manufacturer) {
-        manufacturer.setId(manufacturerIdCounter.incrementAndGet());
-        manufacturerService.createManufacturer(manufacturer);
-        return manufacturer;
+        manufacturer.setManufacturerId(manufacturerIdCounter.incrementAndGet());
+        return manufacturerService.createManufacturer(manufacturer);
     }
 
     @PutMapping(path = "/{id}")
@@ -48,7 +47,7 @@ public class ManufacturerController {
         if (oldManufacturer != null) {
             Manufacturer returnedManufacturer = new Manufacturer(oldManufacturer.getName(),
                     oldManufacturer.getOwner());
-            returnedManufacturer.setId(manufacturerId);
+            returnedManufacturer.setManufacturerId(manufacturerId);
             manufacturerService.updateManufacturer(manufacturerId, manufacturer);
             return ResponseEntity.ok(returnedManufacturer);
         }

@@ -28,7 +28,7 @@ public class ManufacturerService {
     }
 
     public void updateManufacturer(Integer manufacturerId, Manufacturer manufacturer) {
-        manufacturer.setId(manufacturerId);
+        manufacturer.setManufacturerId(manufacturerId);
         manufacturerRepository.save(manufacturer);
     }
 
