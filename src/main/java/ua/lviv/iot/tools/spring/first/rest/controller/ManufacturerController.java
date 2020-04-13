@@ -19,24 +19,26 @@ import ua.lviv.iot.tools.spring.first.rest.model.Manufacturer;
 @RequestMapping("/manufacturer")
 @RestController
 public class ManufacturerController {
+
     private AtomicInteger manufacturerIdCounter = new AtomicInteger();
+
     @Autowired
     private ManufacturerService manufacturerService;
 
     @GetMapping
     public List<Manufacturer> getManufacturers() {
-        return new LinkedList<Manufacturer>(manufacturerService.findAllManufacturers());
+        return new LinkedList<Manufacturer>(manufacturerService.findAllObjects());
     }
 
     @GetMapping(path = "/{id}")
     public Manufacturer getManufacturer(final @PathVariable("id") Integer manufacturerId) {
-        return manufacturerService.findManufacturer(manufacturerId);
+        return manufacturerService.findObject(manufacturerId);
     }
 
     @PostMapping
     public Manufacturer createManufacturer(final @RequestBody Manufacturer manufacturer) {
         manufacturer.setManufacturerId(manufacturerIdCounter.incrementAndGet());
-        return manufacturerService.createManufacturer(manufacturer);
+        return manufacturerService.createObject(manufacturer);
     }
 
     @PutMapping(path = "/{id}")
@@ -48,7 +50,8 @@ public class ManufacturerController {
             Manufacturer returnedManufacturer = new Manufacturer(oldManufacturer.getName(),
                     oldManufacturer.getOwner());
             returnedManufacturer.setManufacturerId(manufacturerId);
-            manufacturerService.updateManufacturer(manufacturerId, manufacturer);
+            manufacturer.setManufacturerId(manufacturerId);
+            manufacturerService.updateObject(manufacturerId, manufacturer);
             return ResponseEntity.ok(returnedManufacturer);
         }
         return ResponseEntity.notFound().build();
@@ -58,7 +61,7 @@ public class ManufacturerController {
     public ResponseEntity<Void> deleteManufacturer(
             final @PathVariable("id") Integer manufacturerId) {
         if (getManufacturer(manufacturerId) != null) {
-            manufacturerService.deleteManufacturer(manufacturerId);
+            manufacturerService.deleteObject(manufacturerId);
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();

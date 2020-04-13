@@ -3,6 +3,7 @@ package ua.lviv.iot.tools.spring.first.rest.model;
 import ua.lviv.iot.tools.spring.first.rest.model.Tool;
 
 public class Scissors extends Tool {
+
     private String typeOfScissors;
 
     public Scissors(double priceInDollars, double weightInKilos, String color, boolean stainless,

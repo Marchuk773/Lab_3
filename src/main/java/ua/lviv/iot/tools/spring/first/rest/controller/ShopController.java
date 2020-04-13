@@ -19,24 +19,26 @@ import ua.lviv.iot.tools.spring.first.rest.model.Shop;
 @RequestMapping("/shop")
 @RestController
 public class ShopController {
+
     private AtomicInteger shopIdCounter = new AtomicInteger();
+
     @Autowired
     private ShopService shopService;
 
     @GetMapping
     public List<Shop> getShops() {
-        return new LinkedList<Shop>(shopService.findAllShops());
+        return new LinkedList<Shop>(shopService.findAllObjects());
     }
 
     @GetMapping(path = "/{id}")
     public Shop getShop(final @PathVariable("id") Integer shopId) {
-        return shopService.findShop(shopId);
+        return shopService.findObject(shopId);
     }
 
     @PostMapping
     public Shop createShop(final @RequestBody Shop shop) {
         shop.setShopId(shopIdCounter.incrementAndGet());
-        return shopService.createShop(shop);
+        return shopService.createObject(shop);
     }
 
     @PutMapping(path = "/{id}")
@@ -46,7 +48,8 @@ public class ShopController {
         if (oldShop != null) {
             Shop returnedShop = new Shop(oldShop.getName(), oldShop.getNumberInTown());
             returnedShop.setShopId(shopId);
-            shopService.updateShop(shopId, shop);
+            shop.setShopId(shopId);
+            shopService.updateObject(shopId, shop);
             return ResponseEntity.ok(returnedShop);
         }
         return ResponseEntity.notFound().build();
@@ -55,7 +58,7 @@ public class ShopController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> deleteTool(final @PathVariable("id") Integer shopId) {
         if (getShop(shopId) != null) {
-            shopService.deleteShop(shopId);
+            shopService.deleteObject(shopId);
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();

@@ -13,11 +13,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "\"manufacturer\"")
 public class Manufacturer {
+
     private String name;
+
     private String owner;
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer manufacturerId;
+
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("manufacturer")
     private Set<Tool> tools;

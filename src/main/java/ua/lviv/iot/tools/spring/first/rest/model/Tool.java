@@ -10,28 +10,37 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Tool {
+
     protected double priceInDollars;
+
     protected double weightInKilos;
+
     protected String color;
+
     protected String name;
+
     protected boolean stainless;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected Integer id;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "manufacturer_id")
     @JsonIgnoreProperties("tools")
     protected Manufacturer manufacturer;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "gardener_shops", joinColumns = {
             @JoinColumn(name = "tool_id", nullable = false) }, inverseJoinColumns = {
-                    @JoinColumn(name = "shop_id", nullable = true) })
+                    @JoinColumn(name = "shop_id", nullable = false) })
     @JsonIgnoreProperties("tools")
-    private Set<Shop> shops;
+    protected Set<Shop> shops;
 
     public Tool(double priceInDollars, double weightInKilos, String color, boolean stainless,
             String name, Manufacturer manufacturer) {
@@ -99,6 +108,7 @@ public class Tool {
         this.shops = shops;
     }
 
+    @JsonIgnore
     public String getHeaders() {
         return "priceInDollars, weightInKilos, color, name, stainless";
     }

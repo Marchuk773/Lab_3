@@ -13,15 +13,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Shop {
+
     private String name;
+
     private int numberInTown;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer shopId;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "gardener_shops", joinColumns = {
             @JoinColumn(name = "shop_id", nullable = false) }, inverseJoinColumns = {
-                    @JoinColumn(name = "tool_id", nullable = true) })
+                    @JoinColumn(name = "tool_id", nullable = false) })
     @JsonIgnoreProperties("shops")
     private Set<Tool> tools;
 

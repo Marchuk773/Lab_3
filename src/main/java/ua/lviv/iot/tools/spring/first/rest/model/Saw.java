@@ -3,6 +3,7 @@ package ua.lviv.iot.tools.spring.first.rest.model;
 import ua.lviv.iot.tools.spring.first.rest.model.Tool;
 
 public class Saw extends Tool {
+
     private double lengthInCentimetres;
 
     public Saw(double priceInDollars, double weightInKilos, String color, boolean stainless,
