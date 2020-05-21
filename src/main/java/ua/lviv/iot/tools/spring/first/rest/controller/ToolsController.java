@@ -19,25 +19,26 @@ import ua.lviv.iot.tools.spring.first.rest.model.Tool;
 @RequestMapping("/tools")
 @RestController
 public class ToolsController {
+
     private AtomicInteger idCounter = new AtomicInteger();
+
     @Autowired
     private ToolsService toolsService;
 
     @GetMapping
     public List<Tool> getTools() {
-        return new LinkedList<Tool>(toolsService.findAllTools());
+        return new LinkedList<Tool>(toolsService.findAllObjects());
     }
 
     @GetMapping(path = "/{id}")
     public Tool getTool(final @PathVariable("id") Integer toolId) {
-        return toolsService.findTool(toolId);
+        return toolsService.findObject(toolId);
     }
 
     @PostMapping
     public Tool createTool(final @RequestBody Tool tool) {
         tool.setId(idCounter.incrementAndGet());
-        toolsService.createTool(tool);
-        return tool;
+        return toolsService.createObject(tool);
     }
 
     @PutMapping(path = "/{id}")
@@ -46,9 +47,11 @@ public class ToolsController {
         Tool oldTool = getTool(toolId);
         if (oldTool != null) {
             Tool returnedTool = new Tool(oldTool.getPriceInDollars(), oldTool.getWeightInKilos(),
-                    oldTool.getColor(), oldTool.isStainless(), oldTool.getName());
+                    oldTool.getColor(), oldTool.isStainless(), oldTool.getName(),
+                    oldTool.getManufacturer());
             returnedTool.setId(toolId);
-            toolsService.updateTool(toolId, tool);
+            tool.setId(toolId);
+            toolsService.updateObject(toolId, tool);
             return ResponseEntity.ok(returnedTool);
         }
         return ResponseEntity.notFound().build();
@@ -57,7 +60,7 @@ public class ToolsController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> deleteTool(final @PathVariable("id") Integer toolId) {
         if (getTool(toolId) != null) {
-            toolsService.deleteTool(toolId);
+            toolsService.deleteObject(toolId);
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();

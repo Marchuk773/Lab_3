@@ -3,6 +3,7 @@ package ua.lviv.iot.tools.spring.first.rest.model;
 import ua.lviv.iot.tools.spring.first.rest.model.Tool;
 
 public class Scissors extends Tool {
+
     private String typeOfScissors;
 
     public Scissors(double priceInDollars, double weightInKilos, String color, boolean stainless,
@@ -27,31 +28,6 @@ public class Scissors extends Tool {
         return "Scissors (typeOfScissors = " + typeOfScissors + "; priceInDollars = "
                 + priceInDollars + "; weightInKilos = " + weightInKilos + "; color = " + color
                 + "; stainless = " + stainless + ")";
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + ((typeOfScissors == null) ? 0 : typeOfScissors.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Scissors other = (Scissors) obj;
-        if (typeOfScissors == null) {
-            if (other.typeOfScissors != null)
-                return false;
-        } else if (!typeOfScissors.equals(other.typeOfScissors))
-            return false;
-        return true;
     }
 
 }

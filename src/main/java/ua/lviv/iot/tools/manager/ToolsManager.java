@@ -5,6 +5,7 @@ import java.util.List;
 import ua.lviv.iot.tools.spring.first.rest.model.Tool;
 
 public class ToolsManager {
+
     private List<Tool> gardenerToolsList = new LinkedList<>();
 
     public ToolsManager(List<Tool> gardenerToolsList) {
