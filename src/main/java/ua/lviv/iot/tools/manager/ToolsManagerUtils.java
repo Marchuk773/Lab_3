@@ -14,19 +14,11 @@ public class ToolsManagerUtils {
 
         @Override
         public int compare(Tool firstTool, Tool secondTool) {
-            return (int) (firstTool.getPriceInDollars() - secondTool.getPriceInDollars());
+            return (int) (firstTool.getPrice() - secondTool.getPrice());
         }
 
     }
 
-    private class NameComparator implements Comparator<Tool> {
-
-        @Override
-        public int compare(Tool firstTool, Tool secondTool) {
-            return firstTool.getName().compareTo(secondTool.getName());
-        }
-
-    }
 
     public static void sortByPrice(List<Tool> tools, SortType sortType) {
         PriceInDollarsComparator PRICE_IN_DOLLARS_COMPARATOR = new PriceInDollarsComparator();
@@ -34,45 +26,5 @@ public class ToolsManagerUtils {
                 : PRICE_IN_DOLLARS_COMPARATOR.reversed());
     }
 
-    public static void sortByName(List<Tool> tools, SortType sortType) {
-        switch (sortType) {
-        case ASCENDING:
-            tools.sort(new ToolsManagerUtils().new NameComparator());
-            break;
-        case DESCENDING:
-            tools.sort(new ToolsManagerUtils().new NameComparator().reversed());
-            break;
-        default:
-            break;
-        }
-
-    }
-
-    public static void sortByColor(List<Tool> tools, SortType sortType) {
-        Comparator<Tool> colorComparator = new Comparator<Tool>() {
-
-            @Override
-            public int compare(Tool firstTool, Tool secondTool) {
-                return (int) (firstTool.getColor().compareTo(secondTool.getColor()));
-            }
-
-        };
-
-        tools.sort(sortType == SortType.ASCENDING ? colorComparator : colorComparator.reversed());
-    }
-
-    public static void sortByWeightInKilos(List<Tool> tools, SortType sortType) {
-        switch (sortType) {
-        case ASCENDING:
-            tools.sort((Tool firstTool, Tool secondTool) -> (int) (firstTool.getWeightInKilos()
-                    - secondTool.getWeightInKilos()));
-            break;
-        case DESCENDING:
-            tools.sort((Tool firstTool, Tool secondTool) -> Double
-                    .compare(secondTool.getWeightInKilos(), firstTool.getWeightInKilos()));
-            break;
-        default:
-            break;
-        }
-    }
+    
 }

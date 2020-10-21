@@ -26,7 +26,7 @@ public class ToolsManager {
     public List<Tool> findByPrice(double searchedPrice) {
         List<Tool> foundTools = new LinkedList<>();
         for (Tool gardenerTool : gardenerToolsList) {
-            if (gardenerTool.getPriceInDollars() == searchedPrice) {
+            if (gardenerTool.getPrice() == searchedPrice) {
                 foundTools.add(gardenerTool);
             }
         }
@@ -36,8 +36,8 @@ public class ToolsManager {
     public List<Tool> findByPrice(double lowerPrice, double higherPrice) {
         List<Tool> foundTools = new LinkedList<>();
         for (Tool gardenerTool : gardenerToolsList) {
-            if ((gardenerTool.getPriceInDollars() >= lowerPrice)
-                    && (gardenerTool.getPriceInDollars() <= higherPrice)) {
+            if ((gardenerTool.getPrice() >= lowerPrice)
+                    && (gardenerTool.getPrice() <= higherPrice)) {
                 foundTools.add(gardenerTool);
             }
         }

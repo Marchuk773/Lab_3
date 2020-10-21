@@ -46,9 +46,8 @@ public class ToolsController {
             final @RequestBody Tool tool) {
         Tool oldTool = getTool(toolId);
         if (oldTool != null) {
-            Tool returnedTool = new Tool(oldTool.getPriceInDollars(), oldTool.getWeightInKilos(),
-                    oldTool.getColor(), oldTool.isStainless(), oldTool.getName(),
-                    oldTool.getManufacturer());
+            Tool returnedTool = new Tool(oldTool.getHeader(), oldTool.getDescription(),
+                    oldTool.getPrice(), oldTool.getId());
             returnedTool.setId(toolId);
             tool.setId(toolId);
             toolsService.updateObject(toolId, tool);
